@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 5000;   // Use dynamic port for Heroku
+const PORT = process.env.PORT || 5000;   // Dynamic port for cloud hosting
 
 // Middleware
 app.use(cors());
@@ -55,11 +55,11 @@ app.get('/api/alphabets/:id', (req, res) => {
   });
 });
 
-// Serve React app in production (optional if frontend is deployed separately)
+// Optional: Serve React app in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
